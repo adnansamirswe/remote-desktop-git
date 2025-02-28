@@ -12,7 +12,7 @@ export default function ConnectionDebugger() {
   useEffect(() => {
     // Test the socket connection
     try {
-      const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
+      const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "https://remote-desktop-backend.onrender.com";
       console.log(`Testing connection to: ${socketURL}`);
       
       const socket = io(socketURL, {
@@ -112,7 +112,7 @@ export default function ConnectionDebugger() {
           )}
           
           <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-            <p className="mb-1">Server: {process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001"}</p>
+            <p className="mb-1">Server: {process.env.NEXT_PUBLIC_SOCKET_URL || "https://remote-desktop-backend.onrender.com"}</p>
             <p>WebRTC connection relies on this signaling server</p>
           </div>
         </div>

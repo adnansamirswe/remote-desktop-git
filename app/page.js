@@ -25,7 +25,7 @@ export default function Dashboard() {
   
   // Test the socket connection
   useEffect(() => {
-    const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
+    const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "https://remote-desktop-backend.onrender.com";
     console.log(`Testing socket connection to: ${socketURL}`);
     
     const socket = io(socketURL, {

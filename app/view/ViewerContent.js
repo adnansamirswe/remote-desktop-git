@@ -12,7 +12,33 @@ export default function ViewerContent() {
   const searchParams = useSearchParams();
   const connectionId = searchParams.get("id");
 
-  // ...rest of your existing view page implementation...
+  // ...existing state and refs...
+  
+  // The main WebRTC connection setup
+  useEffect(() => {
+    if (!connectionId) return;
+
+    addDebugLog(`Initializing viewer for connection ID: ${connectionId}`);
+   
+    // Connect to signaling server
+    try {
+      const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "https://remote-desktop-backend.onrender.com";
+      addDebugLog(`Connecting to socket server at: ${socketURL}`);
+      
+      socketRef.current = io(socketURL, {
+        transports: ['websocket', 'polling'],
+        reconnection: true,
+        reconnectionAttempts: 5,
+        timeout: 10000
+      });
+    } catch (err) {
+      // ...error handling...
+    }
+    
+    // ...rest of useEffect...
+  }, [connectionId, addDebugLog, isControlling, disableControl]);
+
+  // ...rest of component...
 
   return (
     <>

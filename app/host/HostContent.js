@@ -65,13 +65,11 @@ export default function HostContent() {
   }, [connectionId, addDebugLog]);
 
   useEffect(() => {
-    // Content of your original useEffect from host/page.js
-    // ...existing code for socket connection, WebRTC setup, etc.
     if (!connectionId) return;
     
     // Connect to signaling server
     try {
-      const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
+      const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL || "https://remote-desktop-backend.onrender.com";
       addDebugLog(`Connecting to socket at: ${socketURL}`);
       
       socketRef.current = io(socketURL, {
